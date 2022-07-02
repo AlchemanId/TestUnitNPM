@@ -18,12 +18,23 @@ namespace TestUnitNPM
         string server = "localhost";
         string username = "alcheman";
         string pass = "Alchemanmysql1";
+        
+        //string server = "localhost";
+        //string username = "test";
+        //string pass = "testtest";
+
+        //string server = "eecu9f0inktf.ap-southeast-2.psdb.cloud";
+        //string username = "b4sj32cv36f4";
+        //string pass = "pscale_pw_bfOIuFLAHLbQlJsVmOwJ-2LUFawhZrJ-dddG4JXh4iI";
+        
+        
         string db = "camera";
         string sqlQuery;
         MySqlConnection sqlConn = new MySqlConnection();
         MySqlCommand sqlCmd = new MySqlCommand();
 
-        string[] CSmain = { "localhost", "alcheman", "Alchemanmysql1", "camera" };
+        //string[] CSmain = { "localhost", "alcheman", "Alchemanmysql1", "camera" };
+        string[] CSmain = { "localhost", "test", "testtest", "camera" };
         string path1 = "";
         string path2 = "";
 
@@ -32,29 +43,30 @@ namespace TestUnitNPM
             InitializeComponent();
             ServiceController service = new ServiceController("MySQL80");
 
-            try
-            {
-                if (service.Status.Equals(ServiceControllerStatus.Stopped) ||
+            //try
+            //{
+            //    if (service.Status.Equals(ServiceControllerStatus.Stopped) ||
+            //
+            //        service.Status.Equals(ServiceControllerStatus.StopPending))
+            //
+            //    {
+            //        service.Start();
+            //
+            //        //MessageBox.Show("Mysql services status running");
+            //    }
+            //    else
+            //    {
+            //        service.Refresh();
+            //        //MessageBox.Show("service telah di refresh");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    //MessageBox.Show(ex.Message);
+            //}
 
-                    service.Status.Equals(ServiceControllerStatus.StopPending))
-
-                {
-                    service.Start();
-
-                    //MessageBox.Show("Mysql services status running");
-                }
-                else
-                {
-                    service.Refresh();
-                    //MessageBox.Show("service telah di refresh");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                //MessageBox.Show(ex.Message);
-            }
-            upload();
+            //upload();
 
             // Specify the directory you want to manipulate.
             string path3 = @"D:\Key\";
@@ -153,7 +165,7 @@ namespace TestUnitNPM
         {
             //DebugInfo.GetInfo("masuk form login");
 
-            upload();
+            //upload();
         }
 
         private void FormLogin_KeyDown(object sender, KeyEventArgs e)
@@ -176,10 +188,12 @@ namespace TestUnitNPM
                 {
                     path1 = sqlData.Rows[0].ItemArray[16].ToString();
                     path2 = sqlData.Rows[0].ItemArray[17].ToString();
+                    MessageBox.Show("OK");
                 }
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 Console.WriteLine(ex.Message);
             }
         }
@@ -224,6 +238,11 @@ namespace TestUnitNPM
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            upload();
         }
     }
 }
